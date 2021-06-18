@@ -27,7 +27,6 @@ namespace Music_Station
                 fileUrl = str;
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
-
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "SELECT * FROM [music] WHERE(album like '%'+@album+'%') ORDER BY count DESC";

@@ -13,7 +13,7 @@ body{
     }
         </style> 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
     <div class="playlist">
         <br/><br/>
         <h1 style="color:white;">歌曲播放清單</h1>
@@ -21,22 +21,22 @@ body{
         <div id="playbody">
             <div id="playlist">
                 <select runat="server" size="10" ondblclick="selectPlay()" id="Select1" style="background-color:white; width: 234px;">
-                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </select>
             </div>
             <div id="checkplay">
                 
                 <asp:Button ID="btnIsPlay" runat="server" Text="下一首" OnClick="btnIsPlay_Click" Width="100px" />
-                <asp:Button ID="btnSelectPlay" runat="server" Text="播放" OnClick="btnSelectPlay_Click1" Width="100px" />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <td style="text-align: center; width: 100px;" valign="top">
+                &nbsp;<asp:Button ID="btnSelectPlay" runat="server" Text="播放" OnClick="btnSelectPlay_Click1" Width="100px" />
+                &nbsp;&nbsp;&nbsp;
                     <asp:DropDownList ID="ddlPlayType" runat="server">
                         <asp:ListItem Value="0">順序撥放</asp:ListItem>
                         <asp:ListItem Value="1">隨機撥放</asp:ListItem>
                         <asp:ListItem Value="2">單曲循環</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;
-                    <asp:Button ID="Button1" runat="server" Text="返回" Width="80px" OnClick="Button1_Click" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                 <br/><br/>
+                <asp:Button ID="mvSearch" runat="server" Text="MV搜尋" OnClick="mvSearch_Click" Width="100px"/>
+                 &nbsp;<asp:Button ID="Button1" runat="server" Text="返回" Width="100px" OnClick="Button1_Click" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="msg" runat="server" Text="" style="color:white;"></asp:Label>
                     <br/><br/>
                      <span style="font-family:Microsoft YaHei;font-size:18px;">
@@ -49,7 +49,19 @@ body{
         </div>
     </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+    <div class="album">
+        <br/><br/><br/><br/><br/>
+        <asp:Label ID="Label3" runat="server" style="color:white" Font-Size="Large" Text="專輯:  "></asp:Label>
+        <asp:Label ID="album" runat="server" style="color:white" Font-Size="Large" Text=""></asp:Label>
+        <br/>
+        <asp:Label ID="Label4" runat="server" style="color:white" Font-Size="Large" Text="歌手:  "></asp:Label>
+        <asp:Label ID="singer" runat="server" style="color:white" Font-Size="Large" Text=""></asp:Label>
+        <br/>
+        <asp:Image ID="Image1" runat="server" Height="250px" Width="250px" />
+    </div>
+    </div>
+    <div class="col-md-4">
         <br/><br/><br/><br/>
         <asp:Label ID="Label1" runat="server" Style="color:white" Width="500px"></asp:Label>
     </div>

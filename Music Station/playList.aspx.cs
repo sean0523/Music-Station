@@ -18,6 +18,7 @@ namespace Music_Station
     {
         public string fileUrl;
         public string name;
+        public string mvName;
         public int i = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,6 +42,10 @@ namespace Music_Station
                 dr.Close();
                 cmd.Connection.Close();
             }
+            mvSearch.Attributes.Add("onclick", "this.form.target='_blank'");
+            btnIsPlay.Attributes.Add("onclick", "this.form.target=''");
+            btnSelectPlay.Attributes.Add("onclick", "this.form.target=''");
+            Button1.Attributes.Add("onclick", "this.form.target=''");
         }
         public string getId()
         {
@@ -64,11 +69,16 @@ namespace Music_Station
                 string str = path.Replace('\\', '/');
                 fileUrl = str;
                 name = @"\file\" + dr.GetString(1).Trim();
+                
             }
-            
             char[] MyChar = { '.', 'm', 'p', '3' };
             string NewString = fileUrl.Trim().TrimEnd(MyChar);
+            mvName = dr.GetString(1).Trim().TrimEnd(MyChar);
             string path1 = NewString + ".txt";
+            string imagePath = "~/PIC/" + dr.GetString(3).Trim()+ ".jpg";
+            Image1.ImageUrl = imagePath;
+            album.Text = dr.GetString(3).Trim();
+            singer.Text = dr.GetString(2).Trim();
             if (File.Exists(path1))
             {
                 string[] readText = File.ReadAllLines(path1);
@@ -113,9 +123,7 @@ namespace Music_Station
                 id = Select1.Items[radIx].Value;
                 Select1.Items[selectIx].Selected = false;
                 Select1.Items[radIx].Selected = true;
-
             }
-
             else
             {
                 //單曲撥放
@@ -137,6 +145,11 @@ namespace Music_Station
             char[] MyChar = { '.', 'm', 'p', '3' };
             string NewString = fileUrl.Trim().TrimEnd(MyChar);
             string path1 = NewString + ".txt";
+            string imagePath = "~/PIC/" + dr1.GetString(3).Trim() + ".jpg";
+            Image1.ImageUrl = imagePath;
+            album.Text = dr1.GetString(3).Trim();
+            singer.Text = dr1.GetString(2).Trim();
+
             if (File.Exists(path1))
             {
                 string[] readText = File.ReadAllLines(path1);
@@ -147,10 +160,37 @@ namespace Music_Station
                 }
             }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("favorite");
+        }
+
+        protected void mvSearch_Click(object sender, EventArgs e)
+        {
+            string id = Select1.Items[Select1.SelectedIndex].Value;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
+            String sql = "select * from [music] where id=" + id;
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                char[] MyChar = { '.', 'm', 'p', '3' };
+                mvName = dr.GetString(1).Trim().TrimEnd(MyChar);
+            }
+            string link = "https://www.youtube.com/results?search_query=" + mvName;
+            Response.Redirect(link);
+        }
+
+        public void albumInsert()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM [music] WHERE(album like '%'+@album+'%') ORDER BY count DESC";
+            cmd.Parameters.Add("@album", SqlDbType.NChar).Value = Session["albumName"];
+            cmd.Connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
         }
     }
 }
