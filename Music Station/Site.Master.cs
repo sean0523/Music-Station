@@ -20,7 +20,7 @@ namespace Music_Station
             else
             {
                 LinkButton1.Text = "用戶: " + Session["userId"] + "  🔐登出";
-                if (Session["userId"].ToString() == "admin")
+                if (Session["type"].ToString() == "admin")
                     LinkButton2.Visible = true;
                 else
                     LinkButton2.Visible = false;

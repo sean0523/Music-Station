@@ -50,12 +50,12 @@
     </div>
     <div>
         
-        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="false" AllowPaging="True" color="257" style="background-color:white;"
+        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="false" AllowPaging="True" color="257" style="background-color:white;" PagerStyle-NextPageText="下一頁"  PagerStyle-PrevPageText="上一頁"
            DataKeyField="musicName" OnPageIndexChanged="dg_PageIndexChanged" runat="server" PageSize="15" OnCreateCommand="dg_CreateCommand"
             Width="597px">
             <PagerStyle BackColor="AliceBlue" />
             <Columns>
-                <asp:TemplateColumn HeaderText="结果">
+                <asp:TemplateColumn HeaderText="編號">
                     <ItemTemplate>
                         <%# Container.ItemIndex+1 %>
                     </ItemTemplate>
@@ -63,20 +63,19 @@
                 <asp:HyperLinkColumn DataTextField="id" DataNavigateUrlField="id" HeaderText="歌曲id"
                     Visible="False">
                 </asp:HyperLinkColumn>
-                <asp:HyperLinkColumn HeaderText="新增" DataNavigateUrlField="id" Text="新增" DataNavigateUrlFormatString="newCreate.aspx?id={0}">
+                <asp:HyperLinkColumn HeaderText="收藏" DataNavigateUrlField="id" Text="收藏" DataNavigateUrlFormatString="newCreate.aspx?id={0}">
                 </asp:HyperLinkColumn>
-                <asp:BoundColumn DataField="musicName" HeaderText="歌曲名稱">
+                <asp:BoundColumn DataField="musicName" HeaderText="歌名">
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="singer" HeaderText="歌手名稱">
+                <asp:BoundColumn DataField="singer" HeaderText="歌手">
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="album" HeaderText="專輯名稱">
+                <asp:BoundColumn DataField="album" HeaderText="專輯">
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="visitCount" HeaderText="訪問量" SortExpression="visitCount">
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="downLoadCount" HeaderText="下載量" SortExpression="downLoadCount">
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="count" HeaderText="總訪問量" SortExpression="downLoadCount">
-                </asp:BoundColumn>
+            
                 <asp:HyperLinkColumn HeaderText="下載" DataNavigateUrlField="id" Text="下載" DataNavigateUrlFormatString="downLoadList.aspx?id={0}">
                 </asp:HyperLinkColumn>
             </Columns>

@@ -26,11 +26,11 @@
             <br/>
             <li><a href="musicAdd.aspx" style="color:white;">添加新音樂</a></li>
             <li class="menuDiv" style="color:white;">|</li>
-            <li><a href="musicChange.aspx" style="color:white;">音樂修改</a></li>
+            <li><a href="musicChange.aspx" style="color:white;">音樂資訊修改</a></li>
             <li class="menuDiv" style="color:white;">|</li>
-            <li><a href="albumInfoChange.aspx" style="color:white;">專輯修改</a></li>
+            <li><a href="albumInfoChange.aspx" style="color:white;">專輯資訊修改</a></li>
             <li class="menuDiv" style="color:white;">|</li>
-            <li><a href="singerInfoChange.aspx" style="color:white;">歌手信息修改</a></li>
+            <li><a href="singerInfoChange.aspx" style="color:white;">歌手資訊修改</a></li>
             <li class="menuDiv" style="color:white;">|</li>
             <li><a href="textAdd.aspx" style="color:white;">添加歌曲歌詞</a></li>
             <li class="menuDiv" style="color:white;">|</li>
