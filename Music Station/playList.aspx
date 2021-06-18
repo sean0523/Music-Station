@@ -12,13 +12,16 @@ body{
         background-size: cover;
     }
         </style> 
+<div class="row">
+    <div class="col-md-6">
     <div class="playlist">
-    <h1 style="color:white;">歌曲播放清單</h1>    
-    <div id="playpage">
+        <br/><br/>
+        <h1 style="color:white;">歌曲播放清單</h1>
+        <div id="playpage">
         <div id="playbody">
             <div id="playlist">
                 <select runat="server" size="10" ondblclick="selectPlay()" id="Select1" style="background-color:white; width: 234px;">
-                </select>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
             <div id="checkplay">
                 
@@ -35,37 +38,27 @@ body{
                     <asp:Button ID="Button1" runat="server" Text="返回" Width="80px" OnClick="Button1_Click" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="msg" runat="server" Text="" style="color:white;"></asp:Label>
+                    <br/><br/>
+                     <span style="font-family:Microsoft YaHei;font-size:18px;">
+                     <audio controls="controls" autoplay="autoplay" loop src=<%= name %>>
+                    </></span>
                 </td>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
+            </div>
+        </div>
         </div>
     </div>
     </div>
+    <div class="col-md-6">
+        <br/><br/><br/><br/>
+        <asp:Label ID="Label1" runat="server" Style="color:white" Width="500px"></asp:Label>
+    </div>
+</div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main1" runat="server">
-    <br/>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main2" runat="server">
-    <span style="font-family:Microsoft YaHei;font-size:18px;">
-  <audio controls="controls" autoplay="autoplay" src=<%= name %>>
-  </audio></span>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br />
     <br />
     <br />

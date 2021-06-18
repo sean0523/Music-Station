@@ -134,5 +134,10 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        protected void return_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("singerInfoChange");
+        }
     }
 }

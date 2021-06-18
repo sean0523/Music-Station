@@ -34,7 +34,7 @@ namespace Music_Station
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    ListItem listItem = new ListItem { Value = dr.GetString(0), Text = dr.GetString(1) };
+                    ListItem listItem = new ListItem { Value = dr.GetString(1), Text = dr.GetString(2) };
                     Select1.Items.Add(listItem);
                 }
                 Select1.Items[0].Selected = true;
@@ -51,6 +51,7 @@ namespace Music_Station
         }
         protected void btnSelectPlay_Click1(object sender, EventArgs e)
         {
+            Label1.Text = "";
             string id = Select1.Items[Select1.SelectedIndex].Value;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
             String sql = "select * from [music] where id=" + id;
@@ -64,11 +65,25 @@ namespace Music_Station
                 fileUrl = str;
                 name = @"\file\" + dr.GetString(1).Trim();
             }
+            
+            char[] MyChar = { '.', 'm', 'p', '3' };
+            string NewString = fileUrl.Trim().TrimEnd(MyChar);
+            string path1 = NewString + ".txt";
+            if (File.Exists(path1))
+            {
+                string[] readText = File.ReadAllLines(path1);
+                foreach (string s in readText)
+                {
+                    string a = s +"<br/>";
+                    Label1.Text = Label1.Text + a;
+                }
+            }
         }
 
         //下一首
         protected void btnIsPlay_Click(object sender, EventArgs e)
         {
+            Label1.Text = "";
             string id = "";
             int selectIx = Select1.SelectedIndex;
             //順序播放
@@ -118,6 +133,18 @@ namespace Music_Station
                 string str = path.Replace('\\', '/');
                 fileUrl = str;
                 name = @"\file\" + dr1.GetString(1).Trim();
+            }
+            char[] MyChar = { '.', 'm', 'p', '3' };
+            string NewString = fileUrl.Trim().TrimEnd(MyChar);
+            string path1 = NewString + ".txt";
+            if (File.Exists(path1))
+            {
+                string[] readText = File.ReadAllLines(path1);
+                foreach (string s in readText)
+                {
+                    string a = s + "<br/>";
+                    Label1.Text = Label1.Text + a;
+                }
             }
         }
 

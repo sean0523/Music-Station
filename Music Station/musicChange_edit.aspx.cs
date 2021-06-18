@@ -112,6 +112,11 @@ namespace Music_Station
                 return 0;
         }
 
+        protected void return_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("musicChange");
+        }
+
         public void dataBind()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());

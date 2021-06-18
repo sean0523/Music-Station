@@ -35,11 +35,10 @@
         </tr>
         </table>
             <br/>
-            <asp:Button ID="manage" runat="server" OnClick="manage_Click" Text="後台管理" Width="128px" />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="search_btn" runat="server" Text="搜尋" type="submit" OnClick="search_btn_Click" Width="80px" />
              &nbsp;        
-             <asp:Button ID="Button1" runat="server" Text="返回" OnClick="Button1_Click" Width="80px" />
+             <asp:Button ID="Button1" runat="server" Text="返回首頁" OnClick="Button1_Click" Width="80px" />
 
 
 </asp:Content>

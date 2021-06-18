@@ -78,14 +78,14 @@ namespace Music_Station
                     conn1.Open();
                     SqlCommand cmd1 = new SqlCommand();
                     cmd1.Connection = conn1;
-                    cmd1.Parameters.Add("@favorite", SqlDbType.NChar).Value = GetRndNumber(15);
+                    cmd1.Parameters.Add("@favoriteId", SqlDbType.NChar).Value = GetRndNumber(15);
                     cmd1.Parameters.Add("@ID", SqlDbType.NChar).Value = musicId;
                     cmd1.Parameters.Add("@musicName", SqlDbType.NChar).Value = musicName;
                     cmd1.Parameters.Add("@singer", SqlDbType.NChar).Value = singer;
                     cmd1.Parameters.Add("@album", SqlDbType.NChar).Value = album;
                     cmd1.Parameters.Add("@userId", SqlDbType.NChar).Value = Session["userId"].ToString();
 
-                    cmd1.CommandText = "INSERT INTO [favorite] VALUES (@favorite,@ID,@musicName,@singer,@album,@userId)";
+                    cmd1.CommandText = "INSERT INTO [favorite] VALUES (@favoriteId,@ID,@musicName,@singer,@album,@userId)";
                     cmd1.ExecuteNonQuery();
                 }
                 finally
@@ -233,8 +233,9 @@ namespace Music_Station
             conn.Open();
             SqlCommand cmd1 = new SqlCommand();
             cmd1.Connection = conn;
-            cmd1.CommandText = "select * from [favorite] where ID=@ID";
+            cmd1.CommandText = "select * from [favorite] where ID=@ID and userId=@userId";
             cmd1.Parameters.Add("@ID", SqlDbType.NChar).Value = getId().ToString();
+            cmd1.Parameters.Add("@userId", SqlDbType.NChar).Value = Session["userId"].ToString();
             SqlDataReader dr = cmd1.ExecuteReader();
             int check;
             if (dr.Read())

@@ -37,6 +37,7 @@
                 <td align="edge" colspan="2">
                     <br/>
                     <asp:Button ID="btn" runat="server" Text="修改" OnClick="btn_Click" Width="100px" />
+                    <asp:Button ID="return" runat="server" Text="返回" OnClick="return_Click" Width="100px" />
                 </td>
             </tr>
         </table>

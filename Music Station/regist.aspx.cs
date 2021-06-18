@@ -36,14 +36,31 @@ namespace Music_Station
 
         protected void addbtn_Click(object sender, EventArgs e)
         {
+            Label2.Text = "(必填)";
+            Label1.Text = "(必填)";
+            Label3.Text = "(必填)";
+            Label4.Text = "(必填)";
+            meg.Text = "";
+
             if (userId.Text == "" || password.Text == "")
             {
+                Label2.Text = "請輸入使用者帳號";
+                Label1.Text = "請輸入使用者密碼";
                 meg.Text = "帳號與密碼欄位必填，請輸入";
+            }
+            else if(repassword.Text == "" || repassword.Text == null)
+            {
+                Label3.Text = "請再一次輸入密碼";
             }
             else if (password.Text != repassword.Text)
             {
                 repassword.Text = "";
-                meg.Text = "兩次密碼輸入不正確";
+                meg.Text = "兩次密碼輸入不一致，請確認後並重新輸入";
+                Label3.Text = "再次輸入密碼";
+            }
+            else if(mail.Text == "" || mail.Text == null )
+            {
+                Label4.Text = "E-mail 欄位不能為空，請輸入";
             }
                 
             else if (Page.IsValid)

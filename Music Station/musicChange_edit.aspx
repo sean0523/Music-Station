@@ -59,7 +59,7 @@
                     <br/><br/>
                     <asp:Button ID="btn" runat="server" Text="修改" OnClick="btn_Click" Width="100px" />
                 &nbsp;&nbsp;
-                    
+                    <asp:Button ID="return" runat="server" Text="返回" Width="100px" OnClick="return_Click" />
                     <br />
                     <br />
                     <br />

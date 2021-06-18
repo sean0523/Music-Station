@@ -27,22 +27,24 @@
     <div class="log">
     <h1 style="color:white;"> 登入/註冊資訊 </h1>
     <table class="auto-style1">
+
     <tr>
     <td style="color:white"; >使用者帳號：</td><td align="left" class="auto-style3" >
-    <asp:TextBox ID="userId" runat="server" Width="300px"></asp:TextBox>  &nbsp;&nbsp;<asp:Label ID="FailureText" runat="server" Text="" style="color:red;"></asp:Label>
+    <asp:TextBox ID="userId" runat="server" Width="300px" ></asp:TextBox>  &nbsp;&nbsp;<asp:Label ID="FailureText" runat="server" Text="" style="color:red;"></asp:Label>
     </td>
     </tr>
     <tr style="height: 25px">
     <td style="color:white"; >使用者密碼：</td><td "width: 500px;" align="left">
-    <asp:TextBox ID="Password" runat="server" Width="300px" TextMode="Password"></asp:TextBox>                
+    <asp:TextBox ID="Password" runat="server" Width="300px"  TextMode="Password"></asp:TextBox>                
     </td>                
-    </tr>                   
+    </tr>   
     </table>
     <br/><br/>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="button" runat="server" Text="註冊" Width="100px" OnClick="button_Click" />
-        &nbsp;&nbsp;<asp:Button ID="btn" runat="server" Text="登入" Width="100px" OnClick="btn_Click" />
-        &nbsp;&nbsp;<asp:Button ID="forget" runat="server" Text="忘記密碼" OnClick="forget_Click" Width="100px" />
+        <asp:Button ID="btn" runat="server" Text="登入" Width="100px" OnClick="btn_Click" />
+        &nbsp;&nbsp;<asp:Button ID="button" runat="server" Text="註冊" Width="100px" OnClick="button_Click" TabIndex="1" />
+        &nbsp;&nbsp;<asp:Button ID="forget" runat="server" Text="重設密碼" OnClick="forget_Click" Width="100px" TabIndex="1" />
+        
    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main2" runat="server">

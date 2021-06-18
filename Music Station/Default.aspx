@@ -38,6 +38,8 @@ body{
         <p style="color:white; font-size:30px"class="auto-style2" >Find More Innovative &amp; Creative Music Albums</p>
         <p ><a href="login" class="btn btn-primary btn-lg" >Listen Here </a>
         <p>&nbsp;<p>&nbsp;<p>&nbsp;</div>
+    <audio autoplay="autoplay" loop src="listen/背景音樂.mp3">>
+  </audio>
     <br/><br/>
     <br />
     <br />

@@ -32,6 +32,12 @@
             <li class="menuDiv" style="color:white;">|</li>
             <li><a href="singerInfoChange.aspx" style="color:white;">歌手信息修改</a></li>
             <li class="menuDiv" style="color:white;">|</li>
+            <li><a href="textAdd.aspx" style="color:white;">添加歌曲歌詞</a></li>
+            <li class="menuDiv" style="color:white;">|</li>
+            <li><a href="introductionAdd.aspx" style="color:white;">添加專輯介紹</a></li>
+            <li class="menuDiv" style="color:white;">|</li>
+            <li><a href="SongAdd.aspx" style="color:white;">添加試聽歌曲</a></li>
+            <li class="menuDiv" style="color:white;">|</li>
             <li><a href="allowUser.aspx" style="color:white;">使用者授權</a></li>
             <li class="menuDiv" style="color:white;">|</li>
             <li><a href="manageExit.aspx" style="color:white;">管理者退出</a></li>

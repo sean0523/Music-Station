@@ -160,5 +160,10 @@ namespace Music_Station
             dr.Close();
             return check;
         }
+
+        protected void return_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("manage_page");
+        }
     }
 }

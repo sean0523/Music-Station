@@ -30,7 +30,7 @@
         &nbsp;&nbsp;
         <asp:Label ID="msg" runat="server" style="color:red;"></asp:Label>
         <br /><br/>
-        <asp:Button ID="New" runat="server" Text="新增" OnClick="New_Click" Width="100px" /><asp:Button ID="btn" runat="server" Text="返回" OnClick="btn_Click" Width="100px" />
+        <asp:Button ID="New" runat="server" Text="新增歌曲" OnClick="New_Click" Width="100px" /><asp:Button ID="btn" runat="server" Text="返回首頁" OnClick="btn_Click" Width="100px" />
         <asp:Button ID="playBtn" runat="server" OnClick="playBtn_Click" Text="播放" Width="100px" />
         <br />
         <br />

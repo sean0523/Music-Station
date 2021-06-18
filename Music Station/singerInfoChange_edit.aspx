@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="singerInfoChange_edit.aspx.cs" Inherits="Music_Station.singerInfoChange_edit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<style>
+    <style>
         body{
         margin:0;
         padding:0;
@@ -50,7 +50,8 @@
         <asp:Label ID="msg" runat="server" Text="" style="color:white;"></asp:Label>
         <br />
         <br/>
-        <asp:Button ID="btn" runat="server" Text="修改" OnClick="btn_Click" />
+        <asp:Button ID="btn" runat="server" Text="修改" OnClick="btn_Click" Width="100px" />
+        <asp:Button ID="return" runat="server" Text="返回" OnClick="return_Click" Width="100px" />
         <br />
         <br />
         <br />

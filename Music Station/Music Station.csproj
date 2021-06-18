@@ -143,6 +143,22 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="introductionAdd.aspx" />
+    <Content Include="introduction\刻在我心底的名字.txt" />
+    <Content Include="introduction\唯一想了解的人.txt" />
+    <Content Include="introduction\都是因為愛.txt" />
+    <Content Include="listen\因為是你.mp3" />
+    <Content Include="listen\與我無關.mp3" />
+    <Content Include="listen\離開你以後.mp3" />
+    <Content Include="listen\刻在我心底的名字.mp3" />
+    <Content Include="listen\我們都傷.mp3" />
+    <Content Include="listen\GoHome.mp3" />
+    <Content Include="listen\LostSoul.mp3" />
+    <Content Include="listen\完美遺憾.mp3" />
+    <Content Include="listen\愛情怎麼了嗎.mp3" />
+    <Content Include="listen\我很好騙.mp3" />
+    <Content Include="listen\我愛你.mp3" />
+    <Content Include="listen\背景音樂.mp3" />
     <Content Include="logExit.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
@@ -175,14 +191,15 @@
     <Content Include="PIC\pexels-eva-elijas-8060055.jpg" />
     <Content Include="PIC\pexels-rachel-claire-5531009.jpg" />
     <Content Include="PIC\pexels-ready-rey-6774396.jpg" />
-    <Content Include="PIC\動力火車.jpg" />
+    <Content Include="PIC\都是因為愛.jpg" />
     <Content Include="PIC\周興哲.jpg" />
-    <Content Include="PIC\盧廣仲.jpg" />
+    <Content Include="PIC\刻在我心底的名字.jpg" />
     <Content Include="PIC\阿冗.jpg" />
-    <Content Include="PIC\陳勢安.jpg" />
+    <Content Include="PIC\唯一想了解的人.jpg" />
     <Content Include="PIC\韋禮安.jpg" />
     <Content Include="playList.aspx" />
     <Content Include="Rank.aspx" />
+    <Content Include="RankLink.aspx" />
     <Content Include="regist.aspx" />
     <None Include="Properties\PublishProfiles\KuXuanMusic20210605 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -218,6 +235,8 @@
     <Content Include="singerInfoChange.aspx" />
     <Content Include="singerInfoChange_edit.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="SongAdd.aspx" />
+    <Content Include="textAdd.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -291,6 +310,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="introductionAdd.aspx.cs">
+      <DependentUpon>introductionAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="introductionAdd.aspx.designer.cs">
+      <DependentUpon>introductionAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="logExit.aspx.cs">
       <DependentUpon>logExit.aspx</DependentUpon>
@@ -370,6 +396,13 @@
     <Compile Include="Rank.aspx.designer.cs">
       <DependentUpon>Rank.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RankLink.aspx.cs">
+      <DependentUpon>RankLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RankLink.aspx.designer.cs">
+      <DependentUpon>RankLink.aspx</DependentUpon>
+    </Compile>
     <Compile Include="searchMusic.aspx.cs">
       <DependentUpon>searchMusic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -404,6 +437,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SongAdd.aspx.cs">
+      <DependentUpon>SongAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SongAdd.aspx.designer.cs">
+      <DependentUpon>SongAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="textAdd.aspx.cs">
+      <DependentUpon>textAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="textAdd.aspx.designer.cs">
+      <DependentUpon>textAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

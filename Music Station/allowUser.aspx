@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="allowUser.aspx.cs" Inherits="Music_Station.allowUser" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<style>
+    <style>
         body{
         margin:0;
         padding:0;

@@ -32,21 +32,21 @@
                 <td style=" color:white; text-align: right;" class="auto-style2">使用者帳號：</td>
                 <td style="width: 500px;" align="left"><asp:TextBox ID="userId" runat="server" Width="300px"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Label2" runat="server" Text="使用者帳號不能為空" style="color:red;"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="(必填)" style="color:red;"></asp:Label>
                 </td>
             </tr>
             <tr style="height: 25px">
                 <td style="color:white; text-align: right;" class="auto-style2">使用者密碼：</td>
                 <td style="width: 500px;" align="left"><asp:TextBox ID="password" runat="server" Width="300px" TextMode="Password"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
-                    <asp:Label ID="Label1" runat="server" Text="使用者密碼不能為空" style="color:red;"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="(必填)" style="color:red;"></asp:Label>
                 </td>                
             </tr>
             <tr style="height: 25px">
                 <td style="color:white; text-align: right;" class="auto-style2">再次輸入密碼：</td>
                 <td style="width: 500px;" align="left"><asp:TextBox ID="repassword" runat="server" Width="300px" TextMode="Password"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
-                    <asp:Label ID="Label3" runat="server" Text="再輸入一次密碼" style="color:red;"></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="(必填)" style="color:red;"></asp:Label>
                 </td>                
             </tr>         
             <tr style="height: 25px">
@@ -66,12 +66,15 @@
                 <td style="color:white; text-align: right;" class="auto-style2">e-Mail：</td>
                 <td style="width: 500px;" align="left"><asp:TextBox ID="mail" runat="server" Width="300px"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
-                    <asp:Label ID="Label4" runat="server" Text="E-Mail不能為空" style="color:red;"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="(必填)" style="color:red;"></asp:Label>
                 </td>                
             </tr>                   
     </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Label ID="meg" runat="server" style="color:red;"></asp:Label>
+    <br />
     <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="addbtn" runat="server" Text="確認" OnClick="addbtn_Click" Width="80px" />&nbsp;&nbsp;&nbsp; <asp:Button ID="cancel" runat="server" Text="取消" OnClick="cancel_Click" Width="80px" />
     </div>

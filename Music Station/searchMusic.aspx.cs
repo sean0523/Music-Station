@@ -141,7 +141,7 @@ namespace Music_Station
             Response.Redirect("Default");
         }
 
-        protected void manage_Click(object sender, EventArgs e)
+        /*protected void manage_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
             try
@@ -167,6 +167,6 @@ namespace Music_Station
             {
                 conn.Close();
             }
-        }
+        }*/
     }
 }

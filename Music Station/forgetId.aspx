@@ -27,7 +27,7 @@
     }
 </style>
 <div class="auto-style2">
-<h1 style="color:white;" >忘記密碼 !?</h1>
+<h1 style="color:white;" >重設密碼</h1>
      <table  class="auto-style1">
             <tr style="height: 25px">
              <td style=" color:white; width: 100px; text-align: right;">使用者帳號：</td>
@@ -35,7 +35,7 @@
                 </td>
             </tr>
             <tr style="height: 25px">
-                <td style="color:white; width: 100px; text-align: right;">e-Mail：</td>
+                <td style="color:white; width: 100px; text-align: right;">e-mail：</td>
                 <td style="width: 500px;" align="left"><asp:TextBox ID="eMail" runat="server" Width="300px"></asp:TextBox>
                 </td>
             </tr>                    

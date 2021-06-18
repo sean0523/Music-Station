@@ -15,7 +15,7 @@ namespace Music_Station
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["userId"] != null)
-                Response.Redirect("Default");
+                Response.Redirect("searchMusic");
         }
 
         protected void btn_Click(object sender, EventArgs e)
@@ -33,11 +33,12 @@ namespace Music_Station
                 string passwd = "";
                 if (dr.Read())
                 {
+                    string type = dr.GetString(1);
+                    Session["type"] = type;
                     passwd = dr.GetString(0);
 
                     if (passwd.Trim().ToString() == Password.Text.Trim().ToString())
                     {
-
                         Session["userId"] = userId.Text.ToString();
                         Response.Redirect("Default");
                     }
