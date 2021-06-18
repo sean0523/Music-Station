@@ -20,7 +20,7 @@
     }
 </style>   
     <br/><br/><br/>
-     <h1 style="color:white;">歌手訊息</h1>
+     <h1 style="color:white;">歌手資訊修改</h1>
     <div id="music_add">
         <table border="1px" class="auto-style3">
             <tr style="height: 30px">

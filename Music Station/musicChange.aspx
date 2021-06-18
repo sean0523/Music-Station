@@ -11,7 +11,7 @@
     <br/><br/><br/>
     <h1 style="color:white;">歌曲曲目清單</h1>
     <div id="musicchange">
-        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="False" AllowPaging="True" style="background-color:white;"
+        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="False" AllowPaging="True" style="background-color:white;" PagerStyle-NextPageText="下一頁"  PagerStyle-PrevPageText="上一頁"
             OnPageIndexChanged="dg_PageIndexChanged" runat="server" PageSize="15" 
             OnDeleteCommand="dg_DeleteCommand"  DataKeyField ="id" Width="796px">
             <Columns>
@@ -38,6 +38,8 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
             </Columns>
+
+<PagerStyle NextPageText="下一頁" PrevPageText="上一頁"></PagerStyle>
         </asp:DataGrid>
     </div>
     <div>

@@ -33,13 +33,13 @@ namespace Music_Station
                 string passwd = "";
                 if (dr.Read())
                 {
-                    string type = dr.GetString(1);
-                    Session["type"] = type;
+                    string type = dr.GetString(1).Trim();
                     passwd = dr.GetString(0);
 
                     if (passwd.Trim().ToString() == Password.Text.Trim().ToString())
                     {
                         Session["userId"] = userId.Text.ToString();
+                        Session["type"] = type;
                         Response.Redirect("Default");
                     }
                     else

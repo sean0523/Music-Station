@@ -10,9 +10,9 @@
         </style>   
 
     <br/><br/><br/>
-    <h1 style="color:white;">專輯訊息</h1>
+    <h1 style="color:white;">專輯資訊</h1>
     <div id="musicchange">
-        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="False" AllowPaging="True" style="background-color:white;"
+        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="False" AllowPaging="True" style="background-color:white;" PagerStyle-NextPageText="下一頁"  PagerStyle-PrevPageText="上一頁"
             OnPageIndexChanged="dg_PageIndexChanged" runat="server" PageSize="15" OnDeleteCommand="dg_DeleteCommand"
             DataKeyField="album" Width="796px">
             <Columns>

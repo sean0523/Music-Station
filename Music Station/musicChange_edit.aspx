@@ -9,7 +9,7 @@
     }
 </style>   
     <br/><br/><br/>   
-    <h1 style="color:white;">歌曲訊息修改</h1>
+    <h1 style="color:white;">歌曲資訊修改</h1>
     <div id="music_add">
         <table>
             <tr style="height: 25px">

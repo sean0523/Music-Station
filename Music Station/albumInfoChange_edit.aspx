@@ -10,7 +10,7 @@
         </style>   
 
     <br/><br/><br />
-    <h1 style="color:white;">專輯訊息修改</h1>
+    <h1 style="color:white;">專輯資訊修改</h1>
     <div id="music_add">
         <table border="1px">
             <tr style="height: 30px">

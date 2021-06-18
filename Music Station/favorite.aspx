@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main1" runat="server">
      <h1 style="color:white;" >收藏歌單</h1>
     <div id="musicchange">
-        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="false" AllowPaging="True" style="background-color:white;"
+        <asp:DataGrid ID="dg" CssClass="dg" AutoGenerateColumns="false" AllowPaging="True" style="background-color:white;" PagerStyle-NextPageText="下一頁"  PagerStyle-PrevPageText="上一頁"
             OnPageIndexChanged="dg_PageIndexChanged" runat="server" PageSize="15" OnDeleteCommand="dg_DeleteCommand"
             DataKeyField="musicName" OnItemCommand="dg_ItemCommand" Width="594px">
             <Columns>
