@@ -38,9 +38,19 @@ namespace Music_Station
 
                     if (passwd.Trim().ToString() == Password.Text.Trim().ToString())
                     {
-                        Session["userId"] = userId.Text.ToString();
-                        Session["type"] = type;
-                        Response.Redirect("Default");
+                        if (verify.Text == Session["ValidatePictureCode"].ToString())
+                        {
+                            Session["userId"] = userId.Text.ToString();
+                            Session["type"] = type;
+                            Response.Redirect("Default");
+                        }
+                        else
+                        {
+                            Session["userId"] = null;
+                            FailureText.Text = "圖形驗證碼輸入錯誤!!";
+                            verify.Text = "";
+                        }
+
                     }
                     else
                     {
