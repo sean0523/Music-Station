@@ -70,6 +70,8 @@ namespace Music_Station
                 fileUrl = str;
                 name = @"\file\" + dr.GetString(1).Trim();
                 
+
+
             }
             char[] MyChar = { '.', 'm', 'p', '3' };
             string NewString = fileUrl.Trim().TrimEnd(MyChar);

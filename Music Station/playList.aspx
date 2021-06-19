@@ -40,9 +40,10 @@ body{
                     <asp:Label ID="msg" runat="server" Text="" style="color:white;"></asp:Label>
                     <br/><br/>
                      <span style="font-family:Microsoft YaHei;font-size:18px;">
-                     <audio controls="controls" autoplay="autoplay" loop src=<%= name %>>
+                     <audio controls id="player" autoplay="autoplay" src=<%= name %>>
+                     </audio>
                     </></span>
-                </td>
+                
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </div>
@@ -51,7 +52,7 @@ body{
     </div>
     <div class="col-md-4">
     <div class="album">
-        <br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/>
         <asp:Label ID="Label3" runat="server" style="color:white" Font-Size="Large" Text="專輯:  "></asp:Label>
         <asp:Label ID="album" runat="server" style="color:white" Font-Size="Large" Text=""></asp:Label>
         <br/>
@@ -60,15 +61,41 @@ body{
         <br/>
         <asp:Image ID="Image1" runat="server" Height="250px" Width="250px" />
     </div>
+        <script>
+            (function (window, undefined) {
+                var player = document.getElementById('aaa'),
+                    map = ['src', 'currentSrc', 'networkState', 'readyState', 'preload', 'buffered', 'played', 'seekable', 'seeking', 'currentTime', 'startTime', 'duration', 'paused', 'defaultPlaybackRate', 'playbackRate', 'ended', 'autoplay', 'loop', 'controls', 'volume', 'muted'];
+                window.setInterval(function () {
+                    var str = '';
+                    for (var i = 0, j = map.length; i < j; i++) {
+                        str += map[i] + ' : ' + player[map[i]] + '<br>\n';
+                    }
+                    document.getElementById('panel').innerHTML = str;
+                }, 1000);
+            })(window);
+        </script>
+
     </div>
     <div class="col-md-4">
-        <br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/>
         <asp:Label ID="Label1" runat="server" Style="color:white" Width="500px"></asp:Label>
     </div>
 </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main1" runat="server">
+ <script>
+     (function (window, undefined) {
+         var player = document.getElementById('player'),
+             map = ['currentTime', 'duration'];
+         window.setInterval(function () {
+             if (player[map[0]] == player[map[1]]) {
+                 document.getElementById("<%=btnIsPlay.ClientID %>").click();
+          }
+      }, 1000);
+     })(window);
 
+
+ </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main2" runat="server">
     <br />
