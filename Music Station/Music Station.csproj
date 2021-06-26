@@ -236,6 +236,7 @@
     <Content Include="singerInfoChange_edit.aspx" />
     <Content Include="Site.Master" />
     <Content Include="SongAdd.aspx" />
+    <Content Include="Successful.aspx" />
     <Content Include="textAdd.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -445,6 +446,13 @@
     <Compile Include="SongAdd.aspx.designer.cs">
       <DependentUpon>SongAdd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Successful.aspx.cs">
+      <DependentUpon>Successful.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Successful.aspx.designer.cs">
+      <DependentUpon>Successful.aspx</DependentUpon>
+    </Compile>
     <Compile Include="textAdd.aspx.cs">
       <DependentUpon>textAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -472,6 +480,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="files\" />
     <Folder Include="file\" />
   </ItemGroup>
   <ItemGroup>

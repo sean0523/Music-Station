@@ -22,6 +22,8 @@ namespace Music_Station
                 dataBind();
             }
         }
+
+        //頁面載入時顯示專輯名與歌手名
         public void dataBind()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -39,7 +41,6 @@ namespace Music_Station
                     singer.Text = dr.GetString(2).Trim();
                 }
                 dr.Close();
-
             }
             catch (Exception ex)
             {
@@ -50,6 +51,8 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        //取得對應之ID訊息
         public string getId()
         {
             string id = HttpContext.Current.Request.Url.PathAndQuery.ToString();
@@ -65,6 +68,7 @@ namespace Music_Station
             //Response.Redirect("albumInfoChange");
         }
 
+        //更新專輯資訊
         public void update_album()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -80,19 +84,16 @@ namespace Music_Station
                 string album_name = dr.GetString(1).Trim();
                 string oldsinger = dr.GetString(2).Trim();
                 dr.Close();
-
                 cmd.CommandText = "update [album] set album=@album,singer=@singer where albumId=@albumId";
                 cmd.Parameters.Add("@album", SqlDbType.NChar).Value = album.Text.Trim().ToString();
                 cmd.Parameters.Add("@singer", SqlDbType.NChar).Value = singer.Text.Trim().ToString();
                 cmd.Parameters.Add("@oldalbum", SqlDbType.NChar).Value = album_name.ToString();
-
                 if (!album.Text.Trim().ToString().Equals(album_name))
                 {
                     if (!isExisted(cmd))
                     {
                         cmd.CommandText = "update [album] set album=@album,singer=@singer where albumId=@albumId";
                         cmd.ExecuteNonQuery();
-
                         cmd.CommandText = "update [music] set album='" + album.Text.Trim().ToString() + "',singer='" + singer.Text.Trim().ToString() + "' where album=@album";
                         cmd.Parameters["@album"].Value = album_name;
                         cmd.Parameters["@singer"].Value = oldsinger.ToString();
@@ -134,6 +135,8 @@ namespace Music_Station
             }
             return str.ToString();
         }
+
+        //如果歌手欄位有變更，則須在歌手資料表中新增資料
         protected void insert_singer(SqlCommand cmd)
         {
             cmd.CommandText = "insert into [singer] values(@singerId,@singer,@sex@count)";
@@ -143,6 +146,8 @@ namespace Music_Station
             cmd.Parameters.Add("@count", SqlDbType.Int).Value = 0;
             cmd.ExecuteNonQuery();
         }
+
+        //判定專輯名是否已經存在於專輯資料表
         protected Boolean isExisted(SqlCommand cmd)
         {
             cmd.CommandText = "select * from [album] where album=@album";
@@ -151,6 +156,8 @@ namespace Music_Station
             dr.Close();
             return check;
         }
+
+        //判定歌手名是否已經存在於歌手資料表
         public Boolean isExistedInSinger(SqlCommand cmd)
         {
             cmd.CommandText = "select * from [singer] where singer=@singer";

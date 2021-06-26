@@ -22,6 +22,8 @@ namespace Music_Station
                 db_album();
             }
         }
+
+        //顯示專輯資訊
         public void db_album()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -60,6 +62,7 @@ namespace Music_Station
             }
         }
 
+        //專輯資料刪除
         protected void dg_DeleteCommand(object source, DataGridCommandEventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -68,6 +71,7 @@ namespace Music_Station
             SqlTransaction myTrans = conn.BeginTransaction();
             try
             {
+                //刪除專輯資料庫訊息
                 SqlCommand cmd = new SqlCommand();
                 cmd.Transaction = myTrans;
                 cmd.CommandText = "delete  from [album] where album=@album";
@@ -75,6 +79,7 @@ namespace Music_Station
                 cmd.Parameters.Add("@album", SqlDbType.NChar).Value = dg.DataKeys[e.Item.ItemIndex].ToString();
                 cmd.ExecuteNonQuery();
 
+                //刪除音樂資料庫訊息 & file 資料夾檔案
                 cmd.CommandText = "select * from [music] where album = @album";
                 string musicpath = "";
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -84,12 +89,9 @@ namespace Music_Station
                     File.Delete(musicpath);
                 }
                 dr.Close();
-
                 cmd.CommandText = "delete from [music] where album =@album";
                 cmd.ExecuteNonQuery();
-
                 myTrans.Commit();
-
                 db_album();
             }
             catch (Exception ex)
@@ -103,6 +105,7 @@ namespace Music_Station
             }
         }
 
+        //顯示全部專輯資料
         protected void dg_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
             dg.CurrentPageIndex = e.NewPageIndex;

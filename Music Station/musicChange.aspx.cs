@@ -31,6 +31,7 @@ namespace Music_Station
             typeindex["其他"] = 6;
         }
 
+        //判斷資料庫是否存在相同名稱
         protected Boolean isExisted(string keyword, string table, SqlConnection con, SqlCommand cmd)
         {
             cmd.CommandText = "select * from [" + table + "] where " + keyword + "=@" + keyword;
@@ -42,7 +43,7 @@ namespace Music_Station
         }
 
 
-
+        //載入所有音樂資料
         protected void dg_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
             dg.CurrentPageIndex = e.NewPageIndex;
@@ -96,6 +97,7 @@ namespace Music_Station
                 return 0;
         }
 
+        //刪除選定的音樂資料
         protected void dg_DeleteCommand(object source, DataGridCommandEventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -119,12 +121,13 @@ namespace Music_Station
                     cmd.Parameters.Add("@singer", SqlDbType.NChar).Value = singer;
                     cmd.Parameters.Add("@album", SqlDbType.NChar).Value = album;
                     cmd.Parameters.Add("@musicName", SqlDbType.NChar).Value = musicName;
-
+                    //刪除音樂
                     cmd.CommandText = "delete from [music] where id = @id";
                     cmd.ExecuteNonQuery();
+                    //刪除收藏清單
                     cmd.CommandText = "delete from [favorite] where musicName = @musicName";
                     cmd.ExecuteNonQuery();
-
+                    
                     if (!isExisted("singer", "music", conn, cmd))
                     {
                         cmd.CommandText = "delete from [singer] where singer=@singer";
@@ -138,7 +141,7 @@ namespace Music_Station
                     }
 
                     myTrans.Commit();
-
+                    //刪除專案file資料夾的檔案
                     string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + musicName;
                     path = path.Replace('\\', '/');
                     File.Delete(path);
@@ -155,7 +158,6 @@ namespace Music_Station
                 conn.Close();
             }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("manage_page.aspx");

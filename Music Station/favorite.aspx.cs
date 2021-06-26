@@ -30,15 +30,19 @@ namespace Music_Station
                 else
                     playBtn.Visible = true;
             }
+            playBtn.Attributes.Add("onclick", "this.form.target='_blank'");
+            btn.Attributes.Add("onclick", "this.form.target=''");
+            New.Attributes.Add("onclick", "this.form.target=''");
         }
+
+        //載入資料
         protected void dg_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
             dg.CurrentPageIndex = e.NewPageIndex;
             dataBind();
-            
-
         }
 
+        //搜尋使用者之收藏清單資訊
         public void dataBind()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -56,7 +60,7 @@ namespace Music_Station
                 if (dt.Rows.Count > 0)
                 {
                     dg.DataSource = dt;
-                    dg.DataBind();
+                    dg.DataBind();        //載入資料
                 }
                 else
                 {
@@ -65,10 +69,7 @@ namespace Music_Station
                 }
 
                 for (int i = 0; i < this.dg.Items.Count; i++)
-                { 
                      this.dg.Items[i].Cells[0].Attributes.Add("onclick", "return confirm('確認刪除該紀錄？')");
-                }
-
             }
             catch (Exception ex)
             {
@@ -80,6 +81,7 @@ namespace Music_Station
             }
         }
 
+        //刪除被選定的欄位資料
         protected void dg_DeleteCommand(object source, DataGridCommandEventArgs e)
         {
              msg.Text = "";
@@ -111,18 +113,18 @@ namespace Music_Station
 
         protected void btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default");
+            Response.Redirect("Default");        //返回首頁
         }
 
         protected void New_Click(object sender, EventArgs e)
         {
-            Response.Redirect("searchMusic");
+            Response.Redirect("searchMusic");    //歌曲新增
         }
 
 
         protected void playBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("playList");
+            Response.Redirect("playList");       //歌曲撥放
         }
     }
 }

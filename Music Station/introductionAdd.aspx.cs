@@ -25,18 +25,17 @@ namespace Music_Station
         protected void btn_Click(object sender, EventArgs e)
         {
             msg.Text = "";
-            string filename = "";
-            string filename1 = "";
+            string filename = "";           //用來放置專輯介紹檔案名稱
+            string filename1 = "";          //用來放置圖片檔案名稱
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
             filename = upload.PostedFile.FileName.ToString();
-
             filename1 = FileUpload.PostedFile.FileName.ToString();
             int n = filename.LastIndexOf("\\");
             int m = filename1.LastIndexOf("\\");
             filename = filename.Substring(n + 1);
             filename1 = filename1.Substring(m + 1);
-            string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\introduction\";
-            string path1 = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\PIC\";
+            string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\introduction\";    //存放專輯介紹的路徑
+            string path1 = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\PIC\";            //存放圖片的路徑
             path = path.Replace('\\', '/');
             path1 = path1.Replace('\\', '/');
             FileInfo fi = new FileInfo(path + filename);

@@ -23,56 +23,56 @@ namespace Music_Station
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\因為是你.mp3";
+            name = @"\listen\因為是你.mp3";         //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\我們都傷.mp3";
+            name = @"\listen\我們都傷.mp3";         //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\離開你以後.mp3";
+            name = @"\listen\離開你以後.mp3";        //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\我很好騙.mp3";
+            name = @"\listen\我很好騙.mp3";         //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton5_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\刻在我心底的名字.mp3";
+            name = @"\listen\刻在我心底的名字.mp3"; //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton6_Click(object sender, ImageClickEventArgs e)
         {
-            name = @"\listen\與我無關.mp3";
+            name = @"\listen\與我無關.mp3";         //指定撥放路徑
             //Response.Redirect("searchMusic");
         }
 
         protected void ImageButton7_Click(object sender, ImageClickEventArgs e)
         {
             Session["albumName"] = "都是因為愛";
-            Response.Redirect("RankLink");
+            Response.Redirect("RankLink");          //顯示專輯介紹頁面
         }
 
         protected void ImageButton8_Click(object sender, ImageClickEventArgs e)
         {
             Session["albumName"] = "刻在我心底的名字";
-            Response.Redirect("RankLink");
+            Response.Redirect("RankLink");          //顯示專輯介紹頁面
         }
 
         protected void ImageButton9_Click(object sender, ImageClickEventArgs e)
         {
             Session["albumName"] = "唯一想了解的人";
-            Response.Redirect("RankLink");
+            Response.Redirect("RankLink");          //顯示專輯介紹頁面
         }
         protected void btn_Click(object sender, EventArgs e)
         {

@@ -31,7 +31,7 @@ namespace Music_Station
             filename = filename.Substring(n + 1);
             string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\";
             path = path.Replace('\\', '/');
-            FileInfo fi = new FileInfo(path + filename);
+            FileInfo fi = new FileInfo(path + filename);                
             string musicname = filename;
             int i = 1;
             while (fi.Exists)
@@ -50,6 +50,8 @@ namespace Music_Station
                     SqlCommand cmd = new SqlCommand();
                     cmd.Transaction = myTrans;
                     insert_music(conn, musicname, cmd);
+                    
+                    // 判別資料資料表是否存在相同資料，如果不存在就新增資料
                     if (!isExisted("album", "album", conn, cmd))
                     {
                         insert_album(conn, cmd);
@@ -70,9 +72,10 @@ namespace Music_Station
                     File.Delete(path + musicname);
                 }
             }
-            catch (Exception)
+            catch (Exception ee)
             {
-                msg.Text = "錯誤:";
+                msg.Text = ee.Message.ToString();
+                //msg.Text = "錯誤:";
             }
             finally
             {
@@ -80,6 +83,7 @@ namespace Music_Station
             }
         }
 
+        //判定資料庫是否存在相關名稱
         protected Boolean isExisted(string keyword, string table, SqlConnection con, SqlCommand cmd)
         {
             cmd.CommandText = "select * from [" + table + "] where " + keyword + "=@" + keyword;
@@ -90,6 +94,7 @@ namespace Music_Station
             return check;
         }
 
+        //新增資料到音樂資料表
         protected void insert_music(SqlConnection con, string musicname, SqlCommand cmd)
         {
             cmd.CommandText = "insert into [music] values(@id,@musicName,@singer,@album,@type,@visitCount,@downLoadCount,@count)";
@@ -104,6 +109,8 @@ namespace Music_Station
             cmd.Parameters.Add("@count", SqlDbType.Int).Value = 0;
             cmd.ExecuteNonQuery();
         }
+
+        //產生亂數ID
         public string GetRndNumber(int Pos)
         {
             Random rnd = new Random(DateTime.Now.TimeOfDay.Milliseconds);
@@ -116,6 +123,7 @@ namespace Music_Station
             return str.ToString();
         }
 
+        //新增資料到歌手資料表
         protected void insert_singer(SqlConnection con, SqlCommand cmd)
         {
             cmd.CommandText = "insert into [singer] values(@singerId,@singer,@sex,@count)";
@@ -125,6 +133,8 @@ namespace Music_Station
             cmd.Parameters["@count"].Value = 0;
             cmd.ExecuteNonQuery();
         }
+
+        //新增資料到專輯資料表
         protected void insert_album(SqlConnection con, SqlCommand cmd)
         {
             cmd.CommandText = "insert into [album] values(@albumId,@album,@singer,@count)";

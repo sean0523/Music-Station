@@ -20,7 +20,7 @@ body{
         <div id="playpage">
         <div id="playbody">
             <div id="playlist">
-                <select runat="server" size="10" ondblclick="selectPlay()" id="Select1" style="background-color:white; width: 234px;">
+                <select runat="server" size="10" ondblclick="selectPlay()" id="Select1" style="background-color:white; width: 234px;" >
                 </select>
             </div>
             <div id="checkplay">
@@ -35,7 +35,7 @@ body{
                     </asp:DropDownList>
                  <br/><br/>
                 <asp:Button ID="mvSearch" runat="server" Text="MV搜尋" OnClick="mvSearch_Click" Width="100px"/>
-                 &nbsp;<asp:Button ID="Button1" runat="server" Text="返回" Width="100px" OnClick="Button1_Click" />
+                 &nbsp;<asp:Button ID="Button1" runat="server" Text="關閉" Width="100px" OnClick="Button1_Click" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="msg" runat="server" Text="" style="color:white;"></asp:Label>
                     <br/><br/>
@@ -61,19 +61,6 @@ body{
         <br/>
         <asp:Image ID="Image1" runat="server" Height="250px" Width="250px" />
     </div>
-        <script>
-            (function (window, undefined) {
-                var player = document.getElementById('aaa'),
-                    map = ['src', 'currentSrc', 'networkState', 'readyState', 'preload', 'buffered', 'played', 'seekable', 'seeking', 'currentTime', 'startTime', 'duration', 'paused', 'defaultPlaybackRate', 'playbackRate', 'ended', 'autoplay', 'loop', 'controls', 'volume', 'muted'];
-                window.setInterval(function () {
-                    var str = '';
-                    for (var i = 0, j = map.length; i < j; i++) {
-                        str += map[i] + ' : ' + player[map[i]] + '<br>\n';
-                    }
-                    document.getElementById('panel').innerHTML = str;
-                }, 1000);
-            })(window);
-        </script>
 
     </div>
     <div class="col-md-4">
@@ -94,6 +81,9 @@ body{
       }, 1000);
      })(window);
 
+     function selectPlay() {
+         document.getElementById("<%=btnSelectPlay.ClientID %>").click();
+     }
 
  </script>
 </asp:Content>

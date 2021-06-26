@@ -52,6 +52,11 @@
     </td>                
     </tr>
     <tr style="height: 25px">
+    <td style="color:white"; class="auto-style4" >個人認證碼：</td><td "width: 500px;" align="left">
+    <asp:TextBox ID="validation" runat="server" Width="280px"  TextMode="Password"></asp:TextBox>                
+    </td>                
+    </tr>
+    <tr style="height: 25px">
     <td style="color:white"; class="auto-style4" >圖形驗證碼：</td><td "width: 500px;" align="left">
     <asp:TextBox ID="verify" runat="server" Width="150px"  TextMode="Password"></asp:TextBox>
     <asp:Image ID="Image1" runat="server" ImageUrl="ValidatePicture.ashx" 

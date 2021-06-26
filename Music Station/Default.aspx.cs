@@ -11,6 +11,7 @@ namespace Music_Station
     {
         protected void Page_Load(object sender, EventArgs e)
         {   
+            //頁面載入時判斷Session是否已經存在
             if (Session["userId"] == null)
                 msg.Text = "";
             else

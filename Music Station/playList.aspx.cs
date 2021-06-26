@@ -22,12 +22,17 @@ namespace Music_Station
         public int i = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label3.Visible = false;
+            Label4.Visible = false;
+            Image1.Visible = false;
+
             if (!IsPostBack)
             {
+                //設定撥放檔案路徑
                 string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" ;
                 string str = path.Replace('\\', '/');
                 fileUrl = str;
-
+                //列出個人收藏清單
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
                 string sql = "select * from [favorite] where userId='" + Session["userId"] + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -42,11 +47,13 @@ namespace Music_Station
                 dr.Close();
                 cmd.Connection.Close();
             }
-            mvSearch.Attributes.Add("onclick", "this.form.target='_blank'");
+            mvSearch.Attributes.Add("onclick", "this.form.target='_blank'");        //按下mvSearch時開啟新頁面
             btnIsPlay.Attributes.Add("onclick", "this.form.target=''");
             btnSelectPlay.Attributes.Add("onclick", "this.form.target=''");
             Button1.Attributes.Add("onclick", "this.form.target=''");
         }
+
+        //獲取音樂ID
         public string getId()
         {
             string id = HttpContext.Current.Request.Url.PathAndQuery;
@@ -54,48 +61,24 @@ namespace Music_Station
             id = id.Substring(n + 1);
             return id;
         }
+
+        //音樂撥放
         protected void btnSelectPlay_Click1(object sender, EventArgs e)
         {
             Label1.Text = "";
-            string id = Select1.Items[Select1.SelectedIndex].Value;
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
-            String sql = "select * from [music] where id=" + id;
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Connection.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + dr.GetString(1);
-                string str = path.Replace('\\', '/');
-                fileUrl = str;
-                name = @"\file\" + dr.GetString(1).Trim();
-                
-
-
-            }
-            char[] MyChar = { '.', 'm', 'p', '3' };
-            string NewString = fileUrl.Trim().TrimEnd(MyChar);
-            mvName = dr.GetString(1).Trim().TrimEnd(MyChar);
-            string path1 = NewString + ".txt";
-            string imagePath = "~/PIC/" + dr.GetString(3).Trim()+ ".jpg";
-            Image1.ImageUrl = imagePath;
-            album.Text = dr.GetString(3).Trim();
-            singer.Text = dr.GetString(2).Trim();
-            if (File.Exists(path1))
-            {
-                string[] readText = File.ReadAllLines(path1);
-                foreach (string s in readText)
-                {
-                    string a = s +"<br/>";
-                    Label1.Text = Label1.Text + a;
-                }
-            }
+            Label3.Visible = true;
+            Label4.Visible = true;
+            Image1.Visible = true;
+            PlayMusic();        //讀取音樂播放函數
         }
 
         //下一首
         protected void btnIsPlay_Click(object sender, EventArgs e)
         {
             Label1.Text = "";
+            Label3.Visible = true;
+            Label4.Visible = true;
+            Image1.Visible = true;
             string id = "";
             int selectIx = Select1.SelectedIndex;
             //順序播放
@@ -131,40 +114,12 @@ namespace Music_Station
                 //單曲撥放
                 id = Select1.Items[selectIx].Value;
             }
-            string id1 = Select1.Items[Select1.SelectedIndex].Value;
-            SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
-            String sql1 = "select * from [music] where id=" + id;
-            SqlCommand cmd1 = new SqlCommand(sql1, conn1);
-            cmd1.Connection.Open();
-            SqlDataReader dr1 = cmd1.ExecuteReader();
-            if (dr1.Read())
-            {
-                string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + dr1.GetString(1);
-                string str = path.Replace('\\', '/');
-                fileUrl = str;
-                name = @"\file\" + dr1.GetString(1).Trim();
-            }
-            char[] MyChar = { '.', 'm', 'p', '3' };
-            string NewString = fileUrl.Trim().TrimEnd(MyChar);
-            string path1 = NewString + ".txt";
-            string imagePath = "~/PIC/" + dr1.GetString(3).Trim() + ".jpg";
-            Image1.ImageUrl = imagePath;
-            album.Text = dr1.GetString(3).Trim();
-            singer.Text = dr1.GetString(2).Trim();
-
-            if (File.Exists(path1))
-            {
-                string[] readText = File.ReadAllLines(path1);
-                foreach (string s in readText)
-                {
-                    string a = s + "<br/>";
-                    Label1.Text = Label1.Text + a;
-                }
-            }
+            PlayMusic();        //讀取音樂播放函數
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("favorite");
+            //Response.Redirect("favorite");
+            ClientScript.RegisterStartupScript(Page.GetType(), "", "<script language=javascript>window.opener=null;window.open('','_self');window.close();</script>");
         }
 
         protected void mvSearch_Click(object sender, EventArgs e)
@@ -183,16 +138,40 @@ namespace Music_Station
             string link = "https://www.youtube.com/results?search_query=" + mvName;
             Response.Redirect(link);
         }
-
-        public void albumInsert()
+        
+        //音樂播放動作
+        public void PlayMusic()
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM [music] WHERE(album like '%'+@album+'%') ORDER BY count DESC";
-            cmd.Parameters.Add("@album", SqlDbType.NChar).Value = Session["albumName"];
+            string id = Select1.Items[Select1.SelectedIndex].Value;
+            SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
+            String sql = "select * from [music] where id=" + id;
+            SqlCommand cmd = new SqlCommand(sql, conn1);
             cmd.Connection.Open();
             SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                string path = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + dr.GetString(1);
+                string str = path.Replace('\\', '/');
+                fileUrl = str;
+                name = @"\file\" + dr.GetString(1).Trim();
+            }
+            char[] MyChar = { '.', 'm', 'p', '3' };                             //設定字元陣列
+            string NewString = fileUrl.Trim().TrimEnd(MyChar);                  //移除字串最後幾個包含字元陣列的內容
+            string path1 = NewString + ".txt";
+            string imagePath = "~/PIC/" + dr.GetString(3).Trim() + ".jpg";      //圖片檔路徑
+            Image1.ImageUrl = imagePath;
+            album.Text = dr.GetString(3).Trim();
+            singer.Text = dr.GetString(2).Trim();
+
+            if (File.Exists(path1))
+            {
+                string[] readText = File.ReadAllLines(path1);                   //讀取每行文字
+                foreach (string s in readText)                                  //依序顯示
+                {
+                    string a = s + "<br/>";
+                    Label1.Text = Label1.Text + a;
+                }
+            }
         }
     }
 }

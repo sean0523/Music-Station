@@ -22,12 +22,15 @@ namespace Music_Station
                 dataBind();
             }
         }
+
+        //載入資料
         protected void dg_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
             dg.CurrentPageIndex = e.NewPageIndex;
             dataBind();
         }
 
+        //搜尋全部使用者帳戶資料，不包含管理者
         public void dataBind()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -53,14 +56,12 @@ namespace Music_Station
                     msg.Text = "還沒有註冊之用戶！";
                     dg.Visible = false;
                 }
-                //弹出是否删除框
+                //彈出是否删除訊息
                 for (int i = 0; i < this.dg.Items.Count; i++)
                 {
                     this.dg.Items[i].Cells[0].Attributes.Add("onclick", "return confirm('確定授權該用戶為系統管理員？')");
                     this.dg.Items[i].Cells[1].Attributes.Add("onclick", "return confirm('確認刪除該紀錄？')");
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -71,6 +72,8 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        //刪除資料
         protected void dg_DeleteCommand(object source, DataGridCommandEventArgs e)
         {
             msg.Text = "";
@@ -98,6 +101,7 @@ namespace Music_Station
             }
         }
  
+        //使用者授權
         protected void dg_ItemCommand(object source, DataGridCommandEventArgs e)
         {
             if (e.CommandName == "allowUser")
@@ -126,6 +130,7 @@ namespace Music_Station
             }
         }
 
+        //如果刪除使用者權限，同步需刪除對應之個人撥放清單資料
         public void dataFavorite()
         {
             msg.Text = "";

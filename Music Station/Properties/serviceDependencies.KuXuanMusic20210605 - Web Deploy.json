@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/kuxuanmusicdbserver/databases/KuXuanMusic_db",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/kuxuanmusicdbserver1/databases/KuXuanMusic_db",
       "type": "mssql.azure",
       "connectionId": "UsersConnectionString3",
       "secretStore": "AzureAppSettings"

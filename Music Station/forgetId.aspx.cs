@@ -24,20 +24,20 @@ namespace Music_Station
             {
                 Session["userId"] = "";
                 string Id = userId.Text;
-                string sql = "select * from [user] where userId='" + Id + "'";
+                string sql = "select * from [user] where userId='" + Id + "'";     //搜尋使用者ID
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 string email = "";
-                if (dr.Read())
+                if (dr.Read())                                                    //如果有讀到資料
                 {
-                    email = dr.GetString(4).Trim();
+                    email = dr.GetString(4).Trim();                               //找到資料庫e-mail資料
 
-                    if (email.Trim().ToString() == eMail.Text.Trim().ToString())
+                    if (email.Trim().ToString() == eMail.Text.Trim().ToString())    //比對資料庫與輸入數值是否相同
                     {
-                        if (password.Text == repassword.Text)
+                        if (password.Text == repassword.Text)                    //判定兩次密碼輸入是否一致
                         {
-                            modify();
+                            modify();                                            //執行修改
                             meg.Text = "密碼修改成功，請以新密碼登入";
                             userId.Text = "";
                             eMail.Text = "";
@@ -69,6 +69,7 @@ namespace Music_Station
             }
         }
 
+        //新密碼寫入user資料表
         public void modify()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());

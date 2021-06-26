@@ -51,7 +51,7 @@
             {
               "kind": "v12.0",
               "location": "[parameters('resourceLocation')]",
-              "name": "kuxuanmusicdbserver",
+              "name": "kuxuanmusicdbserver1",
               "type": "Microsoft.Sql/servers",
               "apiVersion": "2017-10-01-preview"
             },
@@ -63,11 +63,11 @@
               },
               "kind": "v12.0,user",
               "location": "[parameters('resourceLocation')]",
-              "name": "kuxuanmusicdbserver/KuXuanMusic_db",
+              "name": "kuxuanmusicdbserver1/KuXuanMusic_db",
               "type": "Microsoft.Sql/servers/databases",
               "apiVersion": "2017-10-01-preview",
               "dependsOn": [
-                "kuxuanmusicdbserver"
+                "kuxuanmusicdbserver1"
               ]
             }
           ]

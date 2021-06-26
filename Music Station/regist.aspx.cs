@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -69,32 +70,37 @@ namespace Music_Station
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
                 try
                 {
+                    string number = GetRndNumber(3);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
-
                     cmd.Parameters.Add("@userId", SqlDbType.NChar).Value = userId.Text.Trim();
                     cmd.Parameters.Add("@passwd", SqlDbType.NChar).Value = password.Text.Trim();
                     cmd.Parameters.Add("@name", SqlDbType.NChar).Value = name.Text.Trim();
                     cmd.Parameters.Add("@sex", SqlDbType.NChar).Value = sex.SelectedValue.ToString();
                     cmd.Parameters.Add("@mail", SqlDbType.NChar).Value = mail.Text.Trim();
                     cmd.Parameters.Add("@type", SqlDbType.NChar).Value = "user";
+                    cmd.Parameters.Add("@Validation",SqlDbType.NChar).Value = number;
                     if (!isExisted(cmd))
                     {
-                        cmd.CommandText = "INSERT INTO [user] VALUES (@userId,@passwd,@name,@sex,@mail,@type)";
+                        cmd.CommandText = "INSERT INTO [user] VALUES (@userId,@passwd,@name,@sex,@mail,@type,@Validation)";
                         cmd.ExecuteNonQuery();
                         meg.Text = "註冊成功！";
+                        Session["1"] = userId.Text.Trim();
+                        Session["2"] = password.Text.Trim();
+                        Session["3"] = mail.Text.Trim();
+                        Session["4"] = number;
                         userId.Text = "";
                         name.Text = "";
                         mail.Text = "";
-                        Response.Redirect("Default.aspx");
+                        //Response.Redirect("Default.aspx");
+                        Response.Redirect("Successful.aspx");
                     }
                     else
                         meg.Text = "使用者帳號已存在！";
                         userId.Text = "";
                         password.Text = "";
                         repassword.Text = "";
-
                 }
                 catch (Exception ex)
                 {
@@ -106,6 +112,18 @@ namespace Music_Station
                     conn.Close();
                 }
             }
+        }
+
+        public string GetRndNumber(int Pos)
+        {
+            Random rnd = new Random(DateTime.Now.TimeOfDay.Milliseconds);
+            StringBuilder str = new StringBuilder(Pos);
+            for (int i = 0; i < Pos; i++)
+            {
+                int n = rnd.Next(10);
+                str.Append(n.ToString());
+            }
+            return str.ToString();
         }
 
         protected void cancel_Click(object sender, EventArgs e)

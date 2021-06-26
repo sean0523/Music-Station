@@ -33,7 +33,6 @@ namespace Music_Station
                 cmd.Parameters.Add("@album", SqlDbType.NChar).Value = Session["albumName"];
                 cmd.Connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-
                 while (dr.Read())
                 {
                     singer.Text = dr.GetString(2);
@@ -43,10 +42,8 @@ namespace Music_Station
                 Select1.Items[0].Selected = true;
                 dr.Close();
                 cmd.Connection.Close();
-
                 string imagePath = "~/PIC/" + Session["albumName"] + ".jpg";
                 Image1.ImageUrl = imagePath;
-
                 string path1 = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\introduction\" + Session["albumName"] + ".txt";
                 string str1 = path1.Replace('\\', '/');
                 if (File.Exists(str1))
@@ -61,7 +58,6 @@ namespace Music_Station
                 else
                     list.Text = "目前無專輯介紹";
             }
-
         }
 
         public string getId()

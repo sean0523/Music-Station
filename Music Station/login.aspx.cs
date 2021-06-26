@@ -26,31 +26,40 @@ namespace Music_Station
                 Session["type"] = "";
                 Session["userId"] = "";
                 string Id = userId.Text;
-                string sql = "select password,type from [user] where userId='" + Id + "'";
+                string sql = "select * from [user] where userId='" + Id + "'";          //搜尋使用者之密碼與帳戶類型
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Connection.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 string passwd = "";
-                if (dr.Read())
+                if (dr.Read())                                                          //判定帳號是否存在資料
                 {
-                    string type = dr.GetString(1).Trim();
-                    passwd = dr.GetString(0);
+                    string type = dr.GetString(5).Trim();                               //紀錄資料庫帳戶類型
+                    passwd = dr.GetString(1).Trim();                                           //紀錄資料庫密碼
+                    string valid = dr.GetString(6).Trim();
 
-                    if (passwd.Trim().ToString() == Password.Text.Trim().ToString())
+                    if (passwd == Password.Text.Trim().ToString())    //比對密碼是否一致
                     {
-                        if (verify.Text == Session["ValidatePictureCode"].ToString())
+                        if (valid == validation.Text.Trim().ToString())
                         {
-                            Session["userId"] = userId.Text.ToString();
-                            Session["type"] = type;
-                            Response.Redirect("Default");
+                            if (verify.Text == Session["ValidatePictureCode"].ToString())   //比對驗證碼是否輸入正確
+                            {
+                                Session["userId"] = userId.Text.ToString();
+                                Session["type"] = type;
+                                Response.Redirect("Default");
+                            }
+                            else
+                            {
+                                Session["userId"] = null;
+                                FailureText.Text = "圖形驗證碼輸入錯誤!!";
+                                verify.Text = "";
+                            }
                         }
                         else
                         {
                             Session["userId"] = null;
-                            FailureText.Text = "圖形驗證碼輸入錯誤!!";
-                            verify.Text = "";
+                            FailureText.Text = "個人驗證碼輸入錯誤!!";
+                            validation.Text = "";
                         }
-
                     }
                     else
                     {
@@ -73,6 +82,7 @@ namespace Music_Station
             {
                 Response.Write("<script>alert('登錄失敗！')</script>");
                 Response.Write(ex.ToString());
+                FailureText.Text = ex.ToString();
             }
             finally
             {

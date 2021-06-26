@@ -20,11 +20,12 @@ namespace Music_Station
         {
             if (!IsPostBack)
             {
-                string m_name = updateMusic();
-                update_album();
-                update_singer();
-                addFavorite();
+                string m_name = updateMusic();      //更新音樂資料表內訪問量 visitVount 與總訪問量 count
+                update_album();                     //更新專輯資料表內 count 數值
+                update_singer();                    //更新歌手資料表內 count 數值
+                addFavorite();                      //更新收藏資料表
                 Response.Redirect("favorite");
+                
             }
         }
 
@@ -40,6 +41,7 @@ namespace Music_Station
             return str.ToString();
         }
 
+        //更新收藏資料表
         public void addFavorite()
         {
             string results = isExisted().ToString();
@@ -49,6 +51,8 @@ namespace Music_Station
                 string musicName = "";
                 string singer = "";
                 string album = "";
+
+                //獲取音樂相關欄位資料
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
                 try
                 {
@@ -72,6 +76,7 @@ namespace Music_Station
                     conn.Close();
                 }
 
+                //寫入音樂相關欄位資料至收藏資料表內
                 SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
                 try
                 {
@@ -84,18 +89,17 @@ namespace Music_Station
                     cmd1.Parameters.Add("@singer", SqlDbType.NChar).Value = singer;
                     cmd1.Parameters.Add("@album", SqlDbType.NChar).Value = album;
                     cmd1.Parameters.Add("@userId", SqlDbType.NChar).Value = Session["userId"].ToString();
-
                     cmd1.CommandText = "INSERT INTO [favorite] VALUES (@favoriteId,@ID,@musicName,@singer,@album,@userId)";
                     cmd1.ExecuteNonQuery();
                 }
                 finally
                 {
                     conn1.Close();
-
                 }
             }
-
         }
+
+        //更新音樂資料表內訪問量 visitVount 與總訪問量 count
         public string updateMusic()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -126,6 +130,8 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        //更新歌手資料表內count數值
         public void update_singer()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -165,6 +171,8 @@ namespace Music_Station
             dr1.Close();
             return m_name;
         }
+
+        //更新專輯資料表內的count數
         public void update_album()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -191,6 +199,8 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        //獲取專輯名稱
         public string getAlbum(SqlCommand cmd)
         {
             cmd.CommandText = "select * from [music] where id=@id";
@@ -205,6 +215,7 @@ namespace Music_Station
             return m_name;
         }
 
+        //獲取歌曲名稱
         public string getmuName(SqlCommand cmd) 
         {
             cmd.CommandText = "select * from [music] where id=@id";
@@ -220,6 +231,7 @@ namespace Music_Station
             return musicName;
         }
 
+        //獲取歌曲ID
         public string getId()
         {
             string id = HttpContext.Current.Request.Url.PathAndQuery;
@@ -227,6 +239,8 @@ namespace Music_Station
             id = id.Substring(n + 1);
             return id;
         }
+
+        //判斷個人收藏是否已存在相同歌曲
         public string isExisted()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());

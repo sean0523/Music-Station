@@ -31,6 +31,7 @@ namespace Music_Station
             }
         }
 
+        //綁定全部歌手資料於雜湊表內
         public void bindsingerlist()
         {
 
@@ -66,6 +67,8 @@ namespace Music_Station
                 conn.Close();
             }
         }
+
+        //綁定全部專輯資料於雜湊表內
         public void bindalbumlist()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -96,6 +99,7 @@ namespace Music_Station
             }
         }
 
+        //獲取音樂ID
         public string getId()
         {
             string id = HttpContext.Current.Request.Url.PathAndQuery.ToString();
@@ -104,6 +108,7 @@ namespace Music_Station
             return id;
         }
 
+        //獲取音樂類型並綁訂於雜湊表內
         public int gettype(string type, Hashtable hs)
         {
             if (hs[type] != null)
@@ -117,6 +122,7 @@ namespace Music_Station
             Response.Redirect("musicChange");
         }
 
+        //顯示選定歌曲之相關欄位初始值
         public void dataBind()
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersConnectionString3"].ToString());
@@ -158,14 +164,15 @@ namespace Music_Station
                 dr.Read();
                 string m_name = dr.GetString(1).Trim().ToString();
                 dr.Close();
-
+                
+                //確認修改前後是否一致，如果不同就用新的資料取代
                 cmd.CommandText = "update [music] set musicName=@musicName,singer=@singer,album=@album,type=@type where id=@id";
                 cmd.Parameters.Add("@musicName", SqlDbType.NChar).Value = musicName.Text.Trim().ToString();
                 cmd.Parameters.Add("@singer", SqlDbType.NChar).Value = singer.SelectedValue.Trim().ToString();
                 cmd.Parameters.Add("@album", SqlDbType.NChar).Value = album.SelectedValue.Trim().ToString();
                 cmd.Parameters.Add("@type", SqlDbType.NChar).Value = typelist1.SelectedValue.Trim().ToString();
-                string oldpath = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + m_name;
-                string newpath = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\file\" + musicName.Text.Trim().ToString();
+                string oldpath = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\files\" + m_name;
+                string newpath = new DirectoryInfo(Server.MapPath("")).FullName.ToString() + @"\files\" + musicName.Text.Trim().ToString();
                 FileInfo fi = new FileInfo(newpath);
                 if (!musicName.Text.Trim().ToString().Equals(m_name))
                 {

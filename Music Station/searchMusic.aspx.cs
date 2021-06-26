@@ -22,9 +22,11 @@ namespace Music_Station
             else
                 meg.Text = "用戶 " + Session["userId"].ToString() + " ，你好";
         }
+
+        //依據關鍵字進行資料搜尋
         public void dataBind()
         {
-            string name = txt.Text.ToString();
+            string name = txt.Text.Trim().ToString();
             string type = RadioButtonList1.SelectedValue;
             //string name = Request.QueryString["name"].Trim();
             //string type = Request.QueryString["type"].Trim();
@@ -65,6 +67,10 @@ namespace Music_Station
                 {
                     dg.Visible = false;
                     msg.Text = "沒有找到相關的資料！";
+                }
+                for (int i = 0; i < this.dg.Items.Count; i++)
+                {
+                    this.dg.Items[i].Cells[0].Attributes.Add("onclick", "return confirm('確定收藏此音樂？')");
                 }
             }
             catch (Exception ex)
@@ -133,6 +139,10 @@ namespace Music_Station
 
         protected void dg_CreateCommand(object source, DataGridCommandEventArgs e)
         {
+        }
+        protected void dg_GetCommand(object source, DataGridSortCommandEventArgs e)
+        {
+
         }
 
 
